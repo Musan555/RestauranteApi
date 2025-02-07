@@ -46,7 +46,7 @@ public class SecurityConfig {
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class); //Añadimos un filtro que intercepta cada petición HTTP para obtener el token JWK y validarlo
 
-        return http.build(); 
+        return http.build();
     }
 
 }
