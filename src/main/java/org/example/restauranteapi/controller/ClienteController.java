@@ -3,6 +3,7 @@ package org.example.restauranteapi.controller;
 import jakarta.validation.Valid;
 import org.example.restauranteapi.entity.Cliente;
 import org.example.restauranteapi.entity.Mesa;
+import org.example.restauranteapi.entity.Reserva;
 import org.example.restauranteapi.repository.ClienteRepository;
 import org.example.restauranteapi.repository.MesaRepository;
 import org.example.restauranteapi.repository.ReservaRepository;
@@ -31,6 +32,13 @@ public class ClienteController {
     public ResponseEntity<Cliente> insertClientes (@RequestBody @Valid Cliente cliente){
         var clienteGuardado = clienteRepository.save(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteGuardado);
+    }
+
+    @GetMapping("/clientes/{id}")
+    public ResponseEntity<Cliente> getReserva(@PathVariable Long id) {
+        return clienteRepository.findById(id)
+                .map(cliente -> ResponseEntity.ok().body(cliente))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/clientes/{id}")

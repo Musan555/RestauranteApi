@@ -2,6 +2,7 @@ package org.example.restauranteapi.controller;
 
 import org.example.restauranteapi.entity.Cliente;
 import org.example.restauranteapi.entity.Mesa;
+import org.example.restauranteapi.entity.Reserva;
 import org.example.restauranteapi.repository.ClienteRepository;
 import org.example.restauranteapi.repository.MesaRepository;
 import org.example.restauranteapi.repository.ReservaRepository;
@@ -30,6 +31,13 @@ public class MesaController {
     public ResponseEntity<Mesa> insertMesas (@RequestBody Mesa mesa){
         var mesaGuardada = mesaRepository.save(mesa);
         return ResponseEntity.status(HttpStatus.CREATED).body(mesaGuardada);
+    }
+
+    @GetMapping("/mesas/{id}")
+    public ResponseEntity<Mesa> getMesa(@PathVariable Long id) {
+        return mesaRepository.findById(id)
+                .map(mesa -> ResponseEntity.ok().body(mesa))
+                .orElse(ResponseEntity.notFound().build());
     }
 
     @PutMapping("/mesas/{id}")
