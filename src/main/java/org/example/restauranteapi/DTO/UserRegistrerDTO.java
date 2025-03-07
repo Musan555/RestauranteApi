@@ -13,6 +13,6 @@ public class UserRegistrerDTO {
     private String username;
     private String email;
     private String password;
-    private String password2;
-
+    private String telefono;// Campo nuevo para el número de teléfono
+    private String nombre;
 }

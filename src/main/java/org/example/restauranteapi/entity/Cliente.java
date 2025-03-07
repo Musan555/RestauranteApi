@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="clientes")
+@Table(name = "clientes")
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +39,9 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Reserva> reservas;
+
+    // Relación uno a uno con UserEntity
+    @OneToOne(mappedBy = "cliente")
+    @JsonIgnore
+    private UserEntity userEntity;  // Relación inversa con UserEntity
 }
